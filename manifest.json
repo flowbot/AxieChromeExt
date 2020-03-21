@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "flowbots-axie-plugin",
+    "name": "Flowbot44's Axie Infinity Extension",
     "description": "This extension will help with some axie damage calculations",
     "version": "1.0.0",
     "browser_action": {
