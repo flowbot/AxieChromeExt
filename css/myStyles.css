@@ -1,0 +1,19 @@
+.damageTable{
+    border-collapse: collapse;
+    width: 100%;
+}   
+.damageDiv{
+    width: 95%;
+}
+td.header {
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 5px;
+}
+td.first {
+    width: 120px;
+}
+.total{
+    border-top: solid thin;
+}
+#droppable div { border: 4px dotted yellow}

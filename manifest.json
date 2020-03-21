@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "flowbots-axie-plugin",
+    "description": "This extension will help with some axie damage calculations",
+    "version": "1.0.0",
+    "browser_action": {
+      "default_icon": {
+        "16": "images/icon16.png",
+        "24": "images/icon24.png",
+        "32": "images/icon32.png"
+      },
+     "default_popup": "popup.html"
+    },
+    "icons": { 
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png" 
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://marketplace.axieinfinity.com/axie/*"],
+          "css": ["css/myStyles.css"],
+          "js": ["scripts/axieFB44.js", "scripts/flowbot44.js"]
+        }
+      ],
+      "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+    "permissions": [
+      "https://marketplace.axieinfinity.com/axie/*","tabs", "webNavigation"
+     ]
+  }
