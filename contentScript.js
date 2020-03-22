@@ -34,7 +34,7 @@ async function loadDragDrop(){
     cell1.className = "header"
     cell2.innerHTML = "Bird<br>Aquatic<br>Dusk"
     cell2.className = "header"
-    cell3.innerHTML = "Bug<br>Bird<br>Mech"
+    cell3.innerHTML = "Bug<br>Beast<br>Mech"
     cell3.className = "header"
     cell4.innerHTML = "Eng"
     cell4.className = "header"
