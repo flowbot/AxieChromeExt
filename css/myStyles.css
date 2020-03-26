@@ -17,3 +17,7 @@ td.first {
     border-top: solid thin;
 }
 #droppable div { border: 4px dotted yellow}
+
+.damageBonusDiv{
+    float: right;
+}

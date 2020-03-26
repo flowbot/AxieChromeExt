@@ -2,20 +2,16 @@ var attackMoves = [];
 
 var baseAxieType = "";
 
+var assumeDamageBonus = false;
+
 function clearData(){
     attackMoves = [];
     renderMovesHtml();
 }
 
-function getElementsByXPath(xpath, parent)
-{
-    let results = [];
-    let query = document.evaluate(xpath, parent || document,
-        null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-    for (let i = 0, length = query.snapshotLength; i < length; ++i) {
-        results.push(query.snapshotItem(i));
-    }
-    return results;
+function assumeDamageBonusCheckbox(){
+    assumeDamageBonus = document.getElementById('damageBonusBox').checked;
+    clearData();
 }
 
 function allowDrop(ev) {
@@ -105,21 +101,24 @@ function renderMovesHtml(){
         moveJson = axieJson[move];
 
         //apply combo bonus if 2 or more cards are played
-        comboBonus = numberOfMoves >=2 ? calcComboBonus(moveJson.damage, baseAxieType): 0;
+        let comboBonus = numberOfMoves >=2 ? calcComboBonus(moveJson.damage, baseAxieType): 0;
         //15% bonus for moves if they are the same type as base axie body
-        sameTypeBonus = moveJson.type === baseAxieType ? 1.15 : 1
+        let sameTypeBonus = moveJson.type === baseAxieType ? 1.15 : 1
+        //figure out damage bonus from card
+        let dmgBonus = moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus ? moveJson.damageBonus : 1;
+            console.log(moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus);
         
         cell0.innerHTML = moveJson.name;
 
-        var dmgVsPlant = Math.ceil(moveJson.damage * calcAttackRPS(moveJson.type, "PRD") * sameTypeBonus + comboBonus);
+        var dmgVsPlant = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "PRD"), sameTypeBonus, comboBonus,dmgBonus);
         plantDmgTotal += dmgVsPlant;
         cell1.innerHTML = dmgVsPlant
 
-        var dmgVsBird = Math.ceil(moveJson.damage * calcAttackRPS(moveJson.type, "ABD") * sameTypeBonus + comboBonus);
+        var dmgVsBird = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "ABD"), sameTypeBonus, comboBonus,dmgBonus);
         birdDmgTotal += dmgVsBird;
         cell2.innerHTML = dmgVsBird
         
-        var dmgVsBug = Math.ceil(moveJson.damage * calcAttackRPS(moveJson.type, "BBM") * sameTypeBonus + comboBonus);
+        var dmgVsBug = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "BBM"), sameTypeBonus, comboBonus,dmgBonus);
         bugDmgTotal += dmgVsBug;
         cell3.innerHTML = dmgVsBug;
 
@@ -141,6 +140,9 @@ function renderMovesHtml(){
     cell3.innerHTML = "<b>"+bugDmgTotal+"</b>"
     cell4.innerHTML = "<b>"+engTotal+"</b>"
 
+}
+function calcDamage(damage,attackRPS,typeBonus,combo,damageBonus){
+    return Math.ceil(damage * damageBonus * attackRPS * typeBonus + combo);
 }
 
 function calcAttackRPS(moveType,baseAxieType){
