@@ -44,7 +44,7 @@ function addToAttackMoves(attackMoveUrl){
     let attackMove = attackMoveUrl.substring(attackMoveUrl.lastIndexOf('/')+1);
 
     if(!axieJson[attackMove]){
-        console.log(attackMove);
+        //console.log(attackMove);
         return;//attack move not not found in json
     }
 
@@ -106,7 +106,7 @@ function renderMovesHtml(){
         let sameTypeBonus = moveJson.type === baseAxieType ? 1.15 : 1
         //figure out damage bonus from card
         let dmgBonus = moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus ? moveJson.damageBonus : 1;
-            console.log(moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus);
+            //console.log(moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus);
         
         cell0.innerHTML = moveJson.name;
 

@@ -7,7 +7,7 @@ async function loadDragDrop(){
     }
 
     if(document.getElementById("damageTable")){
-        console.log("already loaded");
+        //console.log("already loaded");
         return; //stop if already loaded
     }
 
