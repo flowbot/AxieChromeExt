@@ -7,8 +7,11 @@ async function loadDragDrop(){
     }
 
     if(document.getElementById("damageTable")){
+        console.log("already loaded");
         return; //stop if already loaded
     }
+
+    attackMoves = [];// clear attack moves
 
     const axieDiv = document.querySelector("canvas");
 
@@ -43,9 +46,22 @@ async function loadDragDrop(){
     clearLink.id = "clearData";
     clearLink.innerHTML = "clear";
     clearLink.className = "rounded px-8 py-4 transition focus:outline-none border text-white border-gray-2 hover:border-gray-1 active:border-gray-3 bg-gray-5 hover:bg-gray-4 active:bg-gray-6";
+    clearLink.style = "margin-right: 200px;";
     clearLink.addEventListener('click', function() {
         clearData();
     });
+    
+    var damageBonusBox = document.createElement("input");
+    damageBonusBox.type = "checkbox";
+    damageBonusBox.id = "damageBonusBox";
+    damageBonusBox.addEventListener('click', function() {
+        assumeDamageBonusCheckbox();
+    });
+    
+    var damageBonusDiv = document.createElement("div");
+    damageBonusDiv.className = "damageBonusDiv"; 
+    damageBonusDiv.innerHTML = 'Assume Damage Bonuses:';
+    damageBonusDiv.appendChild(damageBonusBox);
     
     let moveImgs = getElementsByXPath('//*[@id="__next"]/div[4]/div/div[2]/div/div[2]/div/div[2]/img');
     //console.log(moveImgs);
@@ -61,8 +77,20 @@ async function loadDragDrop(){
     baseAxieType = getBaseAxieType();
 
     divDmgContainer.append(clearLink);
+    divDmgContainer.append(damageBonusDiv);
     divDmgContainer.append(table);
 
     axieDiv.parentElement.parentElement.parentElement.append(divDmgHeader);
     axieDiv.parentElement.parentElement.parentElement.append(divDmgContainer);
+}
+
+function getElementsByXPath(xpath, parent)
+{
+    let results = [];
+    let query = document.evaluate(xpath, parent || document,
+        null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    for (let i = 0, length = query.snapshotLength; i < length; ++i) {
+        results.push(query.snapshotItem(i));
+    }
+    return results;
 }
