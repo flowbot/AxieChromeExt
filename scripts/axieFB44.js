@@ -82,7 +82,7 @@ const axieJson = {
         "name": "Axie Kiss",
         "damage": 90,
         "shield": 30,
-        "type": bird,
+        "type": beast,
         "energy": 1
     },
     "aquatic-back-10.png":{
