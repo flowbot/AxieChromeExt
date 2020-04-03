@@ -14,30 +14,6 @@ function assumeDamageBonusCheckbox(){
     clearData();
 }
 
-function allowDrop(ev) {
-    //console.log("allowDrop")
-    ev.preventDefault();
-    ev.target.style.border = "1px solid green";
-}
-
-function drag(ev) {
-    //console.log(ev.target.src)
-    ev.dataTransfer.setData("text/plain", ev.target.src);
-}
-
-function dragLeave(ev) {
-    //console.log(ev.target.src)
-    ev.target.style.border = "";
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    ev.target.style.border = "";
-    
-    var data = ev.dataTransfer.getData("text");
-    
-    addToAttackMoves(data);
-}
 
 function addToAttackMoves(attackMoveUrl){
     
@@ -67,13 +43,10 @@ function getOccurrence(array, value) {
     return array.filter((v) => (v === value)).length;
 }
 
-function getBaseAxieType(){
-    const axieTypeHtml= document.querySelector("div.flex.items-center.mt-4 > div");
-   // console.log(axieTypeHtml.innerHTML);
-    return axieTypeHtml.innerHTML.toLowerCase();
-}
+
 
 function renderMovesHtml(){
+
     const dropArea = document.getElementById("damageTable");
         while(dropArea.rows.length > 1) {
         dropArea.deleteRow(1);
