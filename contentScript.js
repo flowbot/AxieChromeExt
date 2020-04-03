@@ -8,9 +8,17 @@ async function loadDragDrop(){
 
     if(document.getElementById("damageTable")){
         //console.log("already loaded");
-        return; //stop if already loaded
+        return; 
     }
 
+    const baseAxieHtml = document.querySelector("div.flex.items-center.mt-4 > div");
+    if(!baseAxieHtml){
+        //console.log("Not Petite or Adult don't load");
+        return; 
+    }
+     
+    baseAxieType = baseAxieHtml.innerHTML.toLowerCase();
+    
     attackMoves = [];// clear attack moves
 
     const axieDiv = document.querySelector("canvas");
@@ -67,14 +75,12 @@ async function loadDragDrop(){
     //console.log(moveImgs);
     moveImgs.forEach(img => {
         img.setAttribute("draggable", "true");
-        img.addEventListener("dragstart",drag);
+        img.addEventListener("dragstart", drag);
     });
     
     axieDiv.parentElement.parentElement.addEventListener("drop", drop);
     axieDiv.parentElement.parentElement.addEventListener("dragover", allowDrop);
     axieDiv.parentElement.parentElement.addEventListener("dragleave", dragLeave); 
-
-    baseAxieType = getBaseAxieType();
 
     divDmgContainer.append(clearLink);
     divDmgContainer.append(damageBonusDiv);
@@ -93,4 +99,29 @@ function getElementsByXPath(xpath, parent)
         results.push(query.snapshotItem(i));
     }
     return results;
+}
+
+function allowDrop(ev) {
+    //console.log("allowDrop")
+    ev.preventDefault();
+    ev.target.style.border = "1px solid green";
+}
+
+function drag(ev) {
+    //console.log(ev.target.src)
+    ev.dataTransfer.setData("text/plain", ev.target.src);
+}
+
+function dragLeave(ev) {
+    //console.log(ev.target.src)
+    ev.target.style.border = "";
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    ev.target.style.border = "";
+    
+    var data = ev.dataTransfer.getData("text");
+    
+    addToAttackMoves(data);
 }
