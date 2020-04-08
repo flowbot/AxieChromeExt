@@ -49,6 +49,10 @@ async function loadDragDrop(){
     cell3.className = "header"
     cell4.innerHTML = "Eng"
     cell4.className = "header"
+    var uxRow = table.insertRow();
+    var uxCell = uxRow.insertCell();
+    uxCell.colSpan = 4;
+    uxCell.innerText = 'Drag ability cards of Axie over image to start';
 
     var clearLink = document.createElement("button");
     clearLink.id = "clearData";
@@ -69,6 +73,7 @@ async function loadDragDrop(){
     var damageBonusDiv = document.createElement("div");
     damageBonusDiv.className = "damageBonusDiv"; 
     damageBonusDiv.innerHTML = 'Assume Damage Bonuses:';
+    damageBonusDiv.title = 'Add damage bonus for abilities with conditionals like Swallow - Deal 120% damage if this Axie attacks first.';
     damageBonusDiv.appendChild(damageBonusBox);
     
     let moveImgs = getElementsByXPath('//*[@id="__next"]/div[4]/div/div[2]/div/div[2]/div/div[2]/img');
