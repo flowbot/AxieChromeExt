@@ -17,7 +17,7 @@ const skillArray = {reptile: 31, plant: 31, dusk: 27, bird: 35, bug: 35, dawn: 3
 const axieJson = {
     "aquatic-tail-04.png":{
         "name": "Nimo",
-        "damage": 40,
+        "damage": 30,
         "shield": 0,
         "type": aquatic,
         "energy": 0        
@@ -58,8 +58,8 @@ const axieJson = {
         "energy": 1
     },
     "reptile-back-04.png":{
-        "name": "Spike Throw",
-        "damage": 100,
+        "name": "Tri Spikes",
+        "damage": 80,
         "shield": 50,
         "type": reptile,
         "energy": 1
@@ -80,7 +80,7 @@ const axieJson = {
     },
     "beast-mouth-08.png":{
         "name": "Axie Kiss",
-        "damage": 90,
+        "damage": 100,
         "shield": 30,
         "type": beast,
         "energy": 1
@@ -94,8 +94,8 @@ const axieJson = {
     },
     "bird-mouth-02.png":{
         "name": "Doubletalk",
-        "damage": 0,
-        "shield": 40,
+        "damage": 30,
+        "shield": 0,
         "type": bird,
         "energy": 1
     },
@@ -166,7 +166,7 @@ const axieJson = {
     "beast-mouth-02.png":{
         "name": "Nut Cracker",
         "damage": 105,
-        "shield": 40,
+        "shield": 30,
         "type": beast,
         "energy": 1,
         "damageBonus":1.2
@@ -195,7 +195,7 @@ const axieJson = {
     "plant-tail-08.png":{
         "name": "Yam",
         "damage": 30,
-        "shield": 60,
+        "shield": 40,
         "type": plant,
         "energy": 1
     },
@@ -222,7 +222,7 @@ const axieJson = {
     },
     "bird-tail-02.png":{
         "name": "Swallow",
-        "damage": 120,
+        "damage": 110,
         "shield": 20,
         "type": bird,
         "energy": 1,
@@ -232,7 +232,7 @@ const axieJson = {
     "bug-back-02.png":{
         "name": "Snail Shell",
         "damage": 40,
-        "shield": 100,
+        "shield": 80,
         "type": bug,
         "energy": 1
     },
@@ -246,7 +246,7 @@ const axieJson = {
     "beast-tail-10.png":{
         "name": "Nut Cracker",
         "damage": 105,
-        "shield": 40,
+        "shield": 30,
         "type": beast,
         "energy": 1,
         "damageBonus":1.2,
@@ -304,8 +304,8 @@ const axieJson = {
         "energy": 0
     },
     "bird-horn-02.png":{
-        "name": "Egg Shell",
-        "damage": 150,
+        "name": "Eggshell",
+        "damage": 140,
         "shield": 0,
         "type": bird,
         "energy": 1
@@ -333,7 +333,7 @@ const axieJson = {
     },
     "reptile-mouth-04.png":{
         "name": "Kotaro Bite",
-        "damage": 120,
+        "damage": 80,
         "shield": 20,
         "type": reptile,
         "energy": 1
@@ -364,7 +364,7 @@ const axieJson = {
     "plant-mouth-02.png":{
         "name": "Serious",
         "damage": 30,
-        "shield": 60,
+        "shield": 50,
         "type": plant,
         "energy": 1
     },
@@ -399,7 +399,7 @@ const axieJson = {
     },
     "plant-horn-10.png":{
         "name": "Cactus",
-        "damage": 120,
+        "damage": 110,
         "shield": 20,
         "type": plant,
         "energy": 1,
@@ -422,7 +422,7 @@ const axieJson = {
     },
     "plant-tail-02.png":{
         "name": "Carrot",
-        "damage": 100,
+        "damage": 80,
         "shield": 40,
         "type": plant,
         "energy": 1
@@ -436,7 +436,7 @@ const axieJson = {
     },
     "aquatic-tail-10.png":{
         "name": "Navaga",
-        "damage": 110,
+        "damage": 100,
         "shield": 40,
         "type": aquatic,
         "energy": 1,
@@ -759,8 +759,8 @@ const axieJson = {
     },
     "bird-back-04.png":{
         "name": "Cupid",
-        "damage": 90,
-        "shield": 50,
+        "damage": 120,
+        "shield": 20,
         "type": bird,
         "energy": 1
     },
@@ -781,7 +781,7 @@ const axieJson = {
     "bird-mouth-10.png":{
         "name": "Little Owl",
         "damage": 50,
-        "shield": 10,
+        "shield": 0,
         "type": bird,
         "energy": 1
     },
@@ -881,8 +881,8 @@ const axieJson = {
     },
     "beast-back-12.png":{
         "name": "Furball",
-        "damage": 30,
-        "shield": 40,
+        "damage": 35,
+        "shield": 20,
         "type": beast,
         "energy": 1
     },
