@@ -58,8 +58,8 @@ function renderMovesHtml(){
     let birdDmgTotal = 0;
     let bugDmgTotal = 0;
     let engTotal = 0;
-
     attackMoves.forEach(move => {
+        
         if(!axieJson[move]){
             var row = dropArea.insertRow();
             var cell0 = row.insertCell(0);
@@ -80,18 +80,19 @@ function renderMovesHtml(){
         //figure out damage bonus from card
         let dmgBonus = moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus ? moveJson.damageBonus : 1;
             //console.log(moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus);
-        
+        let numberOfAttacks = calcNumberOfAttacks(moveJson.name);
+
         cell0.innerHTML = moveJson.name;
 
-        var dmgVsPlant = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "PRD"), sameTypeBonus, comboBonus,dmgBonus);
+        var dmgVsPlant = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "PRD"), sameTypeBonus, comboBonus,dmgBonus, numberOfAttacks);
         plantDmgTotal += dmgVsPlant;
         cell1.innerHTML = dmgVsPlant
 
-        var dmgVsBird = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "ABD"), sameTypeBonus, comboBonus,dmgBonus);
+        var dmgVsBird = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "ABD"), sameTypeBonus, comboBonus,dmgBonus, numberOfAttacks);
         birdDmgTotal += dmgVsBird;
         cell2.innerHTML = dmgVsBird
         
-        var dmgVsBug = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "BBM"), sameTypeBonus, comboBonus,dmgBonus);
+        var dmgVsBug = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "BBM"), sameTypeBonus, comboBonus,dmgBonus, numberOfAttacks);
         bugDmgTotal += dmgVsBug;
         cell3.innerHTML = dmgVsBug;
 
@@ -114,8 +115,9 @@ function renderMovesHtml(){
     cell4.innerHTML = "<b>"+engTotal+"</b>"
 
 }
-function calcDamage(damage,attackRPS,typeBonus,combo,damageBonus){
-    return Math.ceil(damage * damageBonus * attackRPS * typeBonus + combo);
+function calcDamage(damage,attackRPS,typeBonus,combo,damageBonus,numberOfAttacks){
+
+    return Math.ceil(damage * damageBonus * attackRPS * typeBonus + combo) * numberOfAttacks;
 }
 
 function calcAttackRPS(moveType,baseAxieType){
@@ -160,4 +162,15 @@ function calcComboBonus(damage,baseAxieType){
     //console.log(skillArray);
     skill = skillArray[baseAxieType];
     return (damage * skill / 500);
+}
+
+function calcNumberOfAttacks(moveName){
+    if(moveName === "Furball"){
+        return 3;
+    }else if ((moveName === "Twin Tail" || moveName === "Tri Feather") && assumeDamageBonus ) {
+        return 2;
+    } else {
+        return 1;
+    }
+
 }

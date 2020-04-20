@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Flowbot44's Axie Infinity Extension",
-    "description": "This extension will help with some axie damage calculations",
+    "description": "This extension will help with some Axie damage calculations",
     "version": "1.1.2",
     "browser_action": {
       "default_icon": {
@@ -29,6 +29,6 @@
         "persistent": false
       },
     "permissions": [
-      "https://marketplace.axieinfinity.com/axie/*","activeTab", "webNavigation"
+      "https://marketplace.axieinfinity.com/axie/*","tabs", "webNavigation"
      ]
   }
