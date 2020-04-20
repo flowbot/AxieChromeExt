@@ -332,9 +332,9 @@ const axieJson = {
         "energy": 0
     },
     "reptile-mouth-04.png":{
-        "name": "Kotaro Bite",
+        "name": "Kotaro",
         "damage": 80,
-        "shield": 20,
+        "shield": 30,
         "type": reptile,
         "energy": 1
     },
