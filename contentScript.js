@@ -51,8 +51,8 @@ async function loadDragDrop(){
     var cell4 = row.insertCell(4);
     cell0.innerHTML = "Move"
     cell0.style.width = "120px";
-    cell1.innerHTML = "Plant<br>Reptile<br>Dawn"
-    cell2.innerHTML = "Bird<br>Aquatic<br>Dusk"
+    cell1.innerHTML = "Plant<br>Reptile<br>Dusk"
+    cell2.innerHTML = "Bird<br>Aquatic<br>Dawn"
     cell3.innerHTML = "Bug<br>Beast<br>Mech"
     cell4.innerHTML = "Eng"
     var uxRow = table.insertRow();
@@ -144,12 +144,17 @@ function clearData(){
 
 function assumeDamageBonusCheckbox(){
     assumeDamageBonus = document.getElementById('damageBonusBox').checked;
-    clearData();
+    renderMovesHtml();
 }
 
 
 function addToAttackMoves(attackMoveUrl){
-    
+    if(!baseAxieType){
+        //console.log("null baseAxieType");
+        let baseAxieHtml = document.querySelector("div.flex.items-center.mt-4 > div");
+        baseAxieType = baseAxieHtml.innerHTML.toLowerCase();
+    }
+
     let attackMove = attackMoveUrl.substring(attackMoveUrl.lastIndexOf('/')+1);
 
     if(!axieJson[attackMove]){
@@ -207,7 +212,7 @@ function renderMovesHtml(){
         //apply combo bonus if 2 or more cards are played
         let comboBonus = numberOfMoves >=2 ? calcComboBonus(moveJson.damage, baseAxieType): 0;
         //15% bonus for moves if they are the same type as base axie body
-        let sameTypeBonus = moveJson.type === baseAxieType ? 1.15 : 1
+        let sameTypeBonus = calcSameTypeBonus(moveJson.type, baseAxieType);
         //figure out damage bonus from card
         let dmgBonus = moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus ? moveJson.damageBonus : 1;
             //console.log(moveJson.hasOwnProperty('damageBonus') && assumeDamageBonus);
@@ -247,7 +252,7 @@ function renderMovesHtml(){
 
 }
 function calcDamage(damage,attackRPS,typeBonus,combo,damageBonus,numberOfAttacks){
-    console.log("damage: "+damage+" damageBonus:" +damageBonus +" attackRPS:" + attackRPS +" typeBonus:" + typeBonus +" combo:" + combo +" numberOfAttacks:" + numberOfAttacks);
+    //console.log("damage: "+damage+" damageBonus:" +damageBonus +" attackRPS:" + attackRPS +" typeBonus:" + typeBonus +" combo:" + combo +" numberOfAttacks:" + numberOfAttacks);
     return Math.ceil(damage * damageBonus * attackRPS * typeBonus + combo) * numberOfAttacks;
 }
 
@@ -289,8 +294,8 @@ function calcAttackRPS(moveType,baseAxieType){
 }
 
 function calcComboBonus(damage,baseAxieType){
-    console.log(baseAxieType);
-    console.log(skillArray);
+    //console.log(baseAxieType);
+    //console.log(skillArray);
     skill = skillArray[baseAxieType];
     return (damage * skill / 500);
 }
@@ -298,12 +303,29 @@ function calcComboBonus(damage,baseAxieType){
 function calcNumberOfAttacks(moveName){
     if(moveName === "Furball"){
         return 3;
-    }else if ((moveName === "Twin Tail" || moveName === "Tri Feather") && assumeDamageBonus ) {
+    }else if ((moveName === "Twin Tail" && attackMoves.length >= 2 ) || (moveName === "Tri Feather" && assumeDamageBonus )) {
         return 2;
     } else {
         return 1;
     }
+}
 
+function calcSameTypeBonus(moveType, baseAxieType){
+    if (moveType === baseAxieType){
+        return 1.15;
+    } else if (specialClasses.includes(baseAxieType)){ //special classes get 7.5% bonus in of move in there type
+        if(baseAxieType === dawn && aquaBirdDawn.includes(moveType) ){
+            return 1.075;
+        }else if (baseAxieType === dusk && plantReptileDusk.includes(moveType)){
+            return 1.075;
+        }else if (baseAxieType === mech && bugBeastMech.includes(moveType)){
+            return 1.075;
+        }else{
+          return 1; 
+        }
+    } else{
+        return 1;
+    } 
 }
 
 var plant = "plant";
@@ -319,6 +341,8 @@ var mech = "mech";
 var plantReptileDusk = [plant,reptile,dusk];
 var aquaBirdDawn = [aquatic,bird,dawn];
 var bugBeastMech = [bug,beast,mech];
+
+var specialClasses = [dusk,dawn,mech];
 
 var skillArray = {reptile: 31, plant: 31, dusk: 27, bird: 35, bug: 35, dawn: 39, mech: 41, beast: 31, aquatic: 35};
 
@@ -996,7 +1020,7 @@ var axieJson = {
         "energy": 1
     },
     "bird-back-02.png":{
-        "name": "Baloon",
+        "name": "Balloon",
         "damage": 60,
         "shield": 0,
         "type": bird,
