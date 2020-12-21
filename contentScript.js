@@ -312,7 +312,7 @@ function calcNumberOfAttacks(moveName){
 
 function calcSameTypeBonus(moveType, baseAxieType){
     if (moveType === baseAxieType){
-        return 1.15;
+        return 1.1;
     } else if (specialClasses.includes(baseAxieType)){ //special classes get 7.5% bonus in of move in there type
         if(baseAxieType === dawn && aquaBirdDawn.includes(moveType) ){
             return 1.075;
@@ -356,7 +356,7 @@ var axieJson = {
     },  
     "aquatic-horn-12.png":{
         "name": "Shoal Star",
-        "damage": 120,
+        "damage": 115,
         "shield": 10,
         "type": aquatic,
         "energy": 1           
@@ -412,15 +412,15 @@ var axieJson = {
     },
     "beast-mouth-08.png":{
         "name": "Axie Kiss",
-        "damage": 100,
+        "damage": 90,
         "shield": 30,
         "type": beast,
         "energy": 1
     },
     "aquatic-back-10.png":{
         "name": "Anemone",
-        "damage": 70,
-        "shield": 30,
+        "damage": 80,
+        "shield": 40,
         "type": aquatic,
         "energy": 1
     },
@@ -448,8 +448,8 @@ var axieJson = {
     },
     "aquatic-mouth-04.png":{
         "name": "Catfish",
-        "damage": 70,
-        "shield": 10,
+        "damage": 80,
+        "shield": 30,
         "type": aquatic,
         "energy": 1
     },
@@ -519,7 +519,7 @@ var axieJson = {
     },
     "reptile-mouth-10.png":{
         "name": "Tiny Turtle",
-        "damage": 90,
+        "damage": 80,
         "shield": 50,
         "type": reptile,
         "energy": 1
@@ -602,7 +602,7 @@ var axieJson = {
     },
     "bug-mouth-02.png":{
         "name": "Mosquito",
-        "damage": 60,
+        "damage": 70,
         "shield": 40,
         "type": bug,
         "energy": 1
@@ -688,15 +688,15 @@ var axieJson = {
     },
     "plant-back-08.png":{
         "name": "Watering Can",
-        "damage": 50,
-        "shield": 90,
+        "damage": 45,
+        "shield": 80,
         "type": plant,
         "energy": 1
     },
     "plant-mouth-02.png":{
         "name": "Serious",
         "damage": 30,
-        "shield": 50,
+        "shield": 30,
         "type": plant,
         "energy": 1
     },
@@ -754,7 +754,7 @@ var axieJson = {
     },
     "plant-tail-02.png":{
         "name": "Carrot",
-        "damage": 80,
+        "damage": 70,
         "shield": 40,
         "type": plant,
         "energy": 1
@@ -776,8 +776,8 @@ var axieJson = {
     },
     "plant-mouth-08.png":{
         "name": "Herbivore",
-        "damage": 60,
-        "shield": 60,
+        "damage": 65,
+        "shield": 65,
         "type": plant,
         "energy": 1
     },
@@ -864,15 +864,15 @@ var axieJson = {
     },
     "aquatic-horn-08.png":{
         "name": "Anemone",
-        "damage": 70,
-        "shield": 30,
+        "damage": 80,
+        "shield": 40,
         "type": aquatic,
         "energy": 1
     },
     "aquatic-back-02.png":{
         "name": "Hermit",
         "damage": 0,
-        "shield": 100,
+        "shield": 115,
         "type": aquatic,
         "energy": 1
     },
@@ -901,7 +901,7 @@ var axieJson = {
     "plant-mouth-10.png":{
         "name": "Silence Whisper",
         "damage": 0,
-        "shield": 0,
+        "shield": 40,
         "type": plant,
         "energy": 1
     },
@@ -952,7 +952,7 @@ var axieJson = {
     "plant-back-12.png":{
         "name": "Pumpkin",
         "damage": 0,
-        "shield": 120,
+        "shield": 115,
         "type": plant,
         "energy": 1
     },
@@ -987,7 +987,7 @@ var axieJson = {
     "bug-horn-12.png":{
         "name": "Leaf Bug",
         "damage": 20,
-        "shield": 30,
+        "shield": 20,
         "type": bug,
         "energy": 0
     },
@@ -1056,15 +1056,15 @@ var axieJson = {
     },
     "aquatic-back-06.png":{
         "name": "Goldfish",
-        "damage": 120,
-        "shield": 30,
+        "damage": 110,
+        "shield": 20,
         "type": aquatic,
         "energy": 1
     },
     "reptile-tail-02.png":{
         "name": "Wall Gecko",
-        "damage": 80,
-        "shield": 20,
+        "damage": 90,
+        "shield": 30,
         "type": reptile,
         "energy": 1
     },
@@ -1077,14 +1077,14 @@ var axieJson = {
     },
     "plant-mouth-04.png":{
         "name": "Zigzag",
-        "damage": 50,
-        "shield": 50,
+        "damage": 55,
+        "shield": 55,
         "type": plant,
         "energy": 1
     },
     "bug-horn-04.png":{
         "name": "Antenna",
-        "damage": 90,
+        "damage": 80,
         "shield": 60,
         "type": bug,
         "energy": 1
@@ -1125,15 +1125,15 @@ var axieJson = {
         "energy": 1
     },
     "aquatic-tail-02.png":{
-        "name": "Koinobori",
-        "damage": 115,
-        "shield": 35,
+        "name": "Koi",
+        "damage": 110,
+        "shield": 30,
         "type": aquatic,
         "energy": 1
     },
     "aquatic-mouth-02.png":{
         "name": "Lam",
-        "damage": 120,
+        "damage": 110,
         "shield": 40,
         "type": aquatic,
         "energy": 1,
@@ -1149,7 +1149,7 @@ var axieJson = {
     "reptile-back-08.png":{
         "name": "Indian Star",
         "damage": 20,
-        "shield": 80,
+        "shield": 70,
         "type": reptile,
         "energy": 1
     },
@@ -1169,8 +1169,8 @@ var axieJson = {
     },
     "bug-back-12.png":{
         "name": "Spiky Wing",
-        "damage": 20,
-        "shield": 0,
+        "damage": 10,
+        "shield": 30,
         "type": bug,
         "energy": 0
     },
@@ -1213,21 +1213,21 @@ var axieJson = {
     },
     "beast-back-12.png":{
         "name": "Furball",
-        "damage": 35,
-        "shield": 20,
+        "damage": 40,
+        "shield": 30,
         "type": beast,
         "energy": 1
     },
     "reptile-back-10.png":{
         "name": "Red Ear",
         "damage": 10,
-        "shield": 130,
+        "shield": 135,
         "type": reptile,
         "energy": 1
     },
     "reptile-mouth-08.png":{
         "name": "Why So Serious",
-        "damage": 100,
+        "damage": 90,
         "shield": 50,
         "type": reptile,
         "energy": 1
@@ -1257,8 +1257,8 @@ var axieJson = {
     },
     "beast-tail-04.png":{
         "name": "Rice",
-        "damage": 90,
-        "shield": 20,
+        "damage": 80,
+        "shield": 10,
         "type": beast,
         "energy": 1
     },
@@ -1292,7 +1292,7 @@ var axieJson = {
     },
     "bug-tail-12.png":{
         "name": "Thorny Caterpillar",
-        "damage": 120,
+        "damage": 110,
         "shield": 30,
         "type": bug,
         "energy": 1,
