@@ -296,10 +296,9 @@ function calcCritDamage(damage,attackRPS,typeBonus,combo,damageBonus,cardName){
     else if (cardName ===  "Ronin"){ //ignore damage bonus as the bonus is a crit
         damageBonus = 1;
     }
-    //console.log(cardName +" - "+ damage +"  *" + damageBonus +"*" + attackRPS +"*" + typeBonus +"*" + critBonusPercent +"+" + combo) 
+   // console.log(cardName +" - "+ damage +"  *" + damageBonus +"*" + attackRPS +"*" + typeBonus +"*" + critBonusPercent +"+" + combo)     
     return Math.floor(damage * damageBonus * attackRPS * typeBonus * critBonusPercent + combo) // seems to be off by 1 from what is displayed in the game
 }
-
 
 
 function calcAttackRPS(moveType,baseAxieType){
