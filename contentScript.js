@@ -103,10 +103,10 @@ async function loadDragDrop(){
 
     divDmgWapper.appendChild(divDmgHeader);
     divDmgWapper.appendChild(divDmgContainer);
-    
+
 
     axieDiv.parentElement.parentElement.prepend(divDmgWapper);
-    
+
 }
 
 function getElementsByXPath(xpath, parent)
@@ -157,9 +157,15 @@ function assumeDamageBonusCheckbox(){
 
 function getCritBonus(){
     if(critBonus == 0){
-        moraleEle = getElementsByXPath('//*[@id="__next"]/div[4]/div/div[2]/div[3]/div[2]/div[4]/div[2]/div');
-        const morale = moraleEle[0].innerHTML
-        //console.log(moraleEle[0].innerHTML)
+        let morale = 27; // lowest morale in game
+        let moralIcon = 'M11.177 9.139c0 .132-.009.261-.023.39-.176 1.959-1.5 3.263-3.336 3.263-1.781 0-3.017-1.232-3.33-3.106a3.407 3.407 0 01-.046-.547l.012-.229c.043-.771.39-1.577.909-2.087l.363-.358.024.509c.012.236.128.458.337.642.107.094.365.195.676.195.161 0 .314-.028.442-.08a.596.596 0 00.397-.532c.023-.325-.107-.486-.272-.69-.184-.226-.413-.507-.534-1.13-.15-.778.287-1.514 1.23-2.073l.482-.285-.146.54a.995.995 0 00-.032.213c-.02.567.444 1.273 1.417 2.157 1.242 1.13 1.419 2.14 1.423 2.98l.007.228z';
+        let svgs = document.getElementsByTagName('svg');
+        for(var i = 0; i < svgs.length; i++) {
+            if (svgs[i].innerHTML.includes(moralIcon)) {
+                morale = svgs[i].nextElementSibling.innerHTML;
+                //console.log(morale);
+            }
+        }
         critBonus = Math.sqrt(morale)*10+morale*0.4-18;
         //console.log(critBonus);
     }
@@ -250,12 +256,12 @@ function renderMovesHtml(){
         birdDmgTotal += dmgVsBird;
         cell2.innerHTML = dmgVsBird
         cell2.title = "Crit Dmg " + calcCritDamage(moveJson.damage,calcAttackRPS(moveJson.type, "ABD"), sameTypeBonus, comboBonus,dmgBonus, moveJson.name);
-        
+
         var dmgVsBug = calcDamage(moveJson.damage,calcAttackRPS(moveJson.type, "BBM"), sameTypeBonus, comboBonus,dmgBonus, numberOfAttacks);
         bugDmgTotal += dmgVsBug;
         cell3.innerHTML = dmgVsBug;
         cell3.title = "Crit Dmg " + calcCritDamage(moveJson.damage,calcAttackRPS(moveJson.type, "BBM"), sameTypeBonus, comboBonus,dmgBonus, moveJson.name);
-        
+
         engTotal += moveJson.energy;
         cell4.innerHTML = moveJson.energy;
         }
@@ -296,7 +302,7 @@ function calcCritDamage(damage,attackRPS,typeBonus,combo,damageBonus,cardName){
     else if (cardName ===  "Ronin"){ //ignore damage bonus as the bonus is a crit
         damageBonus = 1;
     }
-   // console.log(cardName +" - "+ damage +"  *" + damageBonus +"*" + attackRPS +"*" + typeBonus +"*" + critBonusPercent +"+" + combo)     
+   // console.log(cardName +" - "+ damage +"  *" + damageBonus +"*" + attackRPS +"*" + typeBonus +"*" + critBonusPercent +"+" + combo)
     return Math.floor(damage * damageBonus * attackRPS * typeBonus * critBonusPercent + combo) // seems to be off by 1 from what is displayed in the game
 }
 
@@ -344,7 +350,7 @@ function calcAssumeDamageBonus(damageBonusAmt, cardName){
      } else {
         return damageBonusAmt;
      }
-             
+
 }
 
 function calcComboBonus(damage,baseAxieType){
@@ -763,7 +769,7 @@ var axieJson = {
         "energy": 1
     },
     "beast-tail-02.png":{
-        "name": "Cottentail",
+        "name": "Cottontail",
         "damage": 0,
         "shield": 30,
         "type": beast,
@@ -856,7 +862,7 @@ var axieJson = {
     "bug-tail-08.png":{
         "name": "Gravel Ant",
         "damage": 30,
-        "shield": 40,
+        "shield": 30,
         "type": bug,
         "energy": 1
     },
